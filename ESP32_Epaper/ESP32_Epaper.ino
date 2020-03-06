@@ -15,10 +15,10 @@
 #define TEMPG 17
 #define CURRR 18
 #define CURRG 19
-#define TEMPTHRESHY 150
-#define TEMPTHRESHR 200
+#define TEMPTHRESHY 67
+#define TEMPTHRESHR 68
 #define CURRTHRESHY 25
-#define CURRTHRESHR 30
+#define CURRTHRESHR 250
 #define BUTTON1 34
 #define BUTTON2 35
 
