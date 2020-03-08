@@ -54,7 +54,6 @@ extern "C" {
 #define CAN_TIMING_CONFIG_500KBITS()    {.brp = 8, .tseg_1 = 15, .tseg_2 = 4, .sjw = 3, .triple_sampling = false}
 #define CAN_TIMING_CONFIG_800KBITS()    {.brp = 4, .tseg_1 = 16, .tseg_2 = 8, .sjw = 3, .triple_sampling = false}
 #define CAN_TIMING_CONFIG_1MBITS()      {.brp = 4, .tseg_1 = 15, .tseg_2 = 4, .sjw = 3, .triple_sampling = false}
-#define CAN_FRAME_MAX_DLC               8           /**< Max data bytes allowed in CAN2.0 */
 
 /**
  * @brief   Initializer macro for filter configuration to accept all IDs
@@ -193,33 +192,11 @@ typedef struct {
  * @note    The flags member is used to control the message type, and transmission
  *          type (see documentation for message flags)
  */
-
-
-//typedef struct {
-//    uint32_t flags;                 /**< Bit field of message flags indicates frame/transmission type (see documentation) */
-//    uint32_t identifier;            /**< 11 or 29 bit identifier */
-//    uint8_t data_length_code;       /**< Data length code */
-//    uint8_t data[CAN_MAX_DATA_LEN]; /**< Data bytes (not relevant in RTR frame) */
-//} can_message_t;
-//
-
 typedef struct {
-    union {
-        struct {
-            //The order of these bits must match deprecated message flags for compatibility reasons
-            uint32_t extd: 1;           /**< Extended Frame Format (29bit ID) */
-            uint32_t rtr: 1;            /**< Message is a Remote Transmit Request */
-            uint32_t ss: 1;             /**< Transmit as a Single Shot Transmission. Unused for received. */
-            uint32_t self: 1;           /**< Transmit as a Self Reception Request. Unused for received. */
-            uint32_t dlc_non_comp: 1;   /**< Message's Data length code is larger than 8. This will break compliance with CAN2.0B. */
-            uint32_t reserved: 27;      /**< Reserved bits */
-        };
-        //Todo: Deprecate flags
-        uint32_t flags;                 /**< Alternate way to set message flags using message flag macros (see documentation) */
-    };
-    uint32_t identifier;                /**< 11 or 29 bit identifier */
-    uint8_t data_length_code;           /**< Data length code */
-    uint8_t data[CAN_FRAME_MAX_DLC];    /**< Data bytes (not relevant in RTR frame) */
+    uint32_t flags;                 /**< Bit field of message flags indicates frame/transmission type (see documentation) */
+    uint32_t identifier;            /**< 11 or 29 bit identifier */
+    uint8_t data_length_code;       /**< Data length code */
+    uint8_t data[CAN_MAX_DATA_LEN]; /**< Data bytes (not relevant in RTR frame) */
 } can_message_t;
 
 /* ----------------------------- Public API -------------------------------- */
