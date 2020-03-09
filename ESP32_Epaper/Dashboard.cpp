@@ -54,7 +54,7 @@ void Dashboard::setupDashboard() {
 
   //initialize font attributes
   display.setTextColor(GxEPD_WHITE);
-  randomSeed(88); //for random speed display
+//  randomSeed(88); //for random speed display
   warningNum = &OD_warningNum;
   speed = &OD_speed;
   temp = &OD_temperature;
@@ -69,11 +69,11 @@ Dashboard::Dashboard() {
 }
 
 void Dashboard::startDashboard() {
-      setupDashboard();
+  setupDashboard();
   for (;;) {
-  runDisplay();
+    runDisplay();
   }
-  
+
 }
 
 boolean onePress = false;
@@ -136,16 +136,18 @@ void Dashboard::runDisplay() {
 
   if (onePress || twoPress) {
     Serial.println("button pressed!");
-
+    
     onePress = false;
     twoPress = false;
   }
-
-
+  
   //if an error received on the monitor, display it
-  if (warning) {
+  if (*warningNum == 0){
+    warning = false;
+  }
+  if (*warningNum != 0 && !warning) {
     handleWarning();
-  }else {
+  } else if(!warning){
     showPartialUpdate(); //if no warning, just update speed
   }
 }
@@ -153,7 +155,7 @@ void Dashboard::runDisplay() {
 //partially update the screen to show the speed (and eventually SOC)
 void Dashboard::showPartialUpdate()
 {
-  OD_speed = random(16,25);
+//  OD_speed = random(16, 25);
   //set the speed and SOC strings
   String speedString = String(*speed);
   String socString = String(*SOC);
@@ -161,7 +163,7 @@ void Dashboard::showPartialUpdate()
   //create box for speed value
   uint16_t speedBox_x = 98;
   uint16_t speedBox_y = 100;
-  uint16_t speedBox_w = 150;
+  uint16_t speedBox_w = 180;
   uint16_t speedBox_h = 70;
   //set location for cursor for speed
   uint16_t speedCursor_y = speedBox_y - 16;

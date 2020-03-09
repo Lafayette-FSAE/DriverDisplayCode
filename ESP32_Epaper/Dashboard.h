@@ -6,8 +6,8 @@
 
 #define TEMPR 2
 #define TEMPG 17
-#define CURRR 18
-#define CURRG 19
+#define CURRR 25
+#define CURRG 26
 #define TEMPTHRESHY 67
 #define TEMPTHRESHR 68
 #define CURRTHRESHY 25
