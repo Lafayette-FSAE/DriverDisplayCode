@@ -32,6 +32,7 @@ uint16_t *SOC;
 
 
 void Dashboard::setupDashboard() {
+  Serial.println("hey");
   //Initialize LED outputs
   pinMode(TEMPR, OUTPUT);
   pinMode(TEMPG, OUTPUT);
@@ -61,6 +62,8 @@ void Dashboard::setupDashboard() {
   curr = &OD_current;
   warning = false;
   SOC = &OD_SOC;
+  OD_temperature=100;
+  OD_current=30;
 }
 
 //constructor
@@ -136,18 +139,19 @@ void Dashboard::runDisplay() {
 
   if (onePress || twoPress) {
     Serial.println("button pressed!");
-    
+    OD_warningNum=1;
     onePress = false;
     twoPress = false;
   }
   
+  Serial.println(*warningNum);
   //if an error received on the monitor, display it
   if (*warningNum == 0){
     warning = false;
   }
   if (*warningNum != 0 && !warning) {
     handleWarning();
-  } else if(!warning){
+  } else if(*warningNum == 0){
     showPartialUpdate(); //if no warning, just update speed
   }
 }
