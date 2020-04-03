@@ -90,7 +90,7 @@
 /*******************************************************************************
    OBJECT DICTIONARY
 *******************************************************************************/
-   #define CO_OD_NoOfElements             56
+   #define CO_OD_NoOfElements             57
 
 
 /*******************************************************************************
@@ -351,6 +351,10 @@
 /*2004 */
         #define OD_2004_SOC                                         0x2004
 
+/*2005 */
+        #define OD_2005_AMS                                         0x2005
+
+
 /*******************************************************************************
    STRUCTURES FOR VARIABLES IN DIFFERENT MEMORY LOCATIONS
 *******************************************************************************/
@@ -406,6 +410,7 @@ struct sCO_OD_RAM{
 /*2002      */ UNSIGNED16      current;
 /*2003      */ UNSIGNED16      warningNum;
 /*2004      */ UNSIGNED16      SOC;
+/*2005      */ UNSIGNED16      AMS;
 /*2100      */ OCTET_STRING   errorStatusBits[10];
 /*2103      */ UNSIGNED16     SYNCCounter;
 /*2104      */ UNSIGNED16     SYNCTime;
@@ -562,6 +567,10 @@ extern struct sCO_OD_EEPROM CO_OD_EEPROM;
 
 /*2004, Data Type: UNSIGNED16 */
         #define OD_SOC                                              CO_OD_RAM.SOC
+
+/*2005, Data Type: UNSIGNED16 */
+        #define OD_AMS                                              CO_OD_RAM.AMS
+
 /*2100, Data Type: OCTET_STRING, Array[10] */
       #define OD_errorStatusBits                         CO_OD_RAM.errorStatusBits
       #define ODL_errorStatusBits_stringLength           10

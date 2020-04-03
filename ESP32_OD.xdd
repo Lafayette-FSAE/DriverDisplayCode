@@ -13,7 +13,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xsi:type="ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="" fileCreator="Leah" fileCreationDate="2017-01-31" fileCreationTime="17:13:00.0000000-04:00" fileModificationDate="2020-03-08" fileModificationTime="17:13:00.0000000-04:00" fileModifiedBy="Leah" fileVersion="3" supportedLanguages="en">
+    <ProfileBody xsi:type="ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="" fileCreator="Leah" fileCreationDate="2020-03-08" fileCreationTime="17:13:00.0000000-04:00" fileModificationDate="2020-04-03" fileModificationTime="15:37:37.4258017-04:00" fileModifiedBy="Leah" fileVersion="3" supportedLanguages="en">
       <DeviceIdentity>
         <vendorName readOnly="true" />
         <vendorID>2</vendorID>
@@ -830,6 +830,14 @@ value = 1-240:   The SYNC message with the counter value equal to this value sha
             </denotation>
             <defaultValue value="100" />
           </parameter>
+          <parameter uniqueID="UID_PARAM_180004" access="read">
+            <label lang="en">compatibility entry</label>
+            <description lang="en" />
+            <denotation>
+              <label lang="en" />
+            </denotation>
+            <defaultValue value="0" />
+          </parameter>
           <parameter uniqueID="UID_PARAM_180005" access="readWrite">
             <label lang="en">event timer</label>
             <description lang="en" />
@@ -972,6 +980,14 @@ bit 16-31: index from OD</description>
             </denotation>
             <defaultValue value="" />
           </parameter>
+          <parameter uniqueID="UID_PARAM_2005" access="readWrite">
+            <label lang="en">AMS</label>
+            <description lang="en" />
+            <denotation>
+              <label lang="en" />
+            </denotation>
+            <defaultValue value="" />
+          </parameter>
         </parameterList>
       </ApplicationProcess>
     </ProfileBody>
@@ -989,7 +1005,7 @@ bit 16-31: index from OD</description>
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xsi:type="ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="" fileCreator="Leah" fileCreationDate="2017-01-31" fileCreationTime="17:13:00.0000000-04:00" fileModificationDate="2020-03-08" fileVersion="3" supportedLanguages="en">
+    <ProfileBody xsi:type="ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="" fileCreator="Leah" fileCreationDate="2020-03-08" fileCreationTime="17:13:00.0000000-04:00" fileModificationDate="2020-04-03" fileVersion="3" supportedLanguages="en">
       <ApplicationLayers>
         <CANopenObjectList>
           <CANopenObject index="1000" name="Device type" objectType="7" dataType="0007" lowLimit="" highLimit="" accessType="ro" actualValue="" edseditor_extenstion_storagelocation="ROM" PDOmapping="no" uniqueIDRef="UID_PARAM_1000" />
@@ -1078,11 +1094,12 @@ bit 16-31: index from OD</description>
             <CANopenSubObject subIndex="0007" name="mapped object 7" objectType="7" dataType="0007" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_160007" />
             <CANopenSubObject subIndex="0008" name="mapped object 8" objectType="7" dataType="0007" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_160008" />
           </CANopenObject>
-          <CANopenObject index="1800" name="TPDO communication parameter" objectType="9" dataType="0020" lowLimit="" highLimit="" accessType="rw" actualValue="" edseditor_extenstion_storagelocation="ROM" PDOmapping="no" uniqueIDRef="UID_PARAM_1800" subNumber="6">
+          <CANopenObject index="1800" name="TPDO communication parameter" objectType="9" dataType="0020" lowLimit="" highLimit="" accessType="rw" actualValue="" edseditor_extenstion_storagelocation="ROM" PDOmapping="no" uniqueIDRef="UID_PARAM_1800" subNumber="7">
             <CANopenSubObject subIndex="0000" name="max sub-index" objectType="7" dataType="0005" accessType="ro" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_180000" />
             <CANopenSubObject subIndex="0001" name="COB-ID used by TPDO" objectType="7" dataType="0007" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_180001" />
             <CANopenSubObject subIndex="0002" name="transmission type" objectType="7" dataType="0005" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_180002" />
             <CANopenSubObject subIndex="0003" name="inhibit time" objectType="7" dataType="0006" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_180003" />
+            <CANopenSubObject subIndex="0004" name="compatibility entry" objectType="7" dataType="0005" lowLimit="" highLimit="" accessType="ro" actualValue="" denotation="" PDOmapping="no" uniqueIDRef="UID_PARAM_180004" />
             <CANopenSubObject subIndex="0005" name="event timer" objectType="7" dataType="0006" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_180005" />
             <CANopenSubObject subIndex="0006" name="SYNC start value" objectType="7" dataType="0005" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_180006" />
           </CANopenObject>
@@ -1097,11 +1114,12 @@ bit 16-31: index from OD</description>
             <CANopenSubObject subIndex="0007" name="mapped object 7" objectType="7" dataType="0007" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_1a0007" />
             <CANopenSubObject subIndex="0008" name="mapped object 8" objectType="7" dataType="0007" accessType="rw" actualValue="" PDOmapping="no" uniqueIDRef="UID_PARAM_1a0008" />
           </CANopenObject>
-          <CANopenObject index="2000" name="speed" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" denotation="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2000" />
+          <CANopenObject index="2000" name="speed" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2000" />
           <CANopenObject index="2001" name="temperature" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" denotation="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2001" />
-          <CANopenObject index="2002" name="current" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" denotation="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2002" />
-          <CANopenObject index="2003" name="warningNum" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" denotation="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2003" />
-          <CANopenObject index="2004" name="SOC" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" denotation="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2004" />
+          <CANopenObject index="2002" name="current" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2002" />
+          <CANopenObject index="2003" name="warningNum" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2003" />
+          <CANopenObject index="2004" name="SOC" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2004" />
+          <CANopenObject index="2005" name="AMS" objectType="7" dataType="0006" lowLimit="" highLimit="" accessType="rw" actualValue="" denotation="" edseditor_extenstion_storagelocation="RAM" PDOmapping="no" uniqueIDRef="UID_PARAM_2005" />
         </CANopenObjectList>
         <dummyUsage>
           <dummy entry="Dummy0001=0" />
