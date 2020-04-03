@@ -29,15 +29,16 @@ uint16_t *curr;
 boolean warning;
 uint16_t *warningNum;
 uint16_t *SOC;
+uint16_t *AMS;
 
 
 void Dashboard::setupDashboard() {
-  Serial.println("hey");
   //Initialize LED outputs
   pinMode(TEMPR, OUTPUT);
   pinMode(TEMPG, OUTPUT);
   pinMode(CURRR, OUTPUT);
   pinMode(CURRG, OUTPUT);
+  pinMode(AMSFLT, OUTPUT);
   //Initialize buttons as inputs
   pinMode(BUTTON1, INPUT);
   pinMode(BUTTON2, INPUT);
@@ -55,15 +56,14 @@ void Dashboard::setupDashboard() {
 
   //initialize font attributes
   display.setTextColor(GxEPD_WHITE);
-//  randomSeed(88); //for random speed display
+  //  randomSeed(88); //for random speed display
   warningNum = &OD_warningNum;
   speed = &OD_speed;
   temp = &OD_temperature;
   curr = &OD_current;
   warning = false;
   SOC = &OD_SOC;
-  OD_temperature=100;
-  OD_current=30;
+  AMS = &OD_AMS;
 }
 
 //constructor
@@ -81,7 +81,6 @@ void Dashboard::startDashboard() {
 
 boolean onePress = false;
 boolean twoPress = false;
-boolean buttonPress = onePress || twoPress;
 uint8_t dbDelay = 1000;
 
 void buttonOne() //interrupt with debounce
@@ -137,29 +136,39 @@ void Dashboard::runDisplay() {
     digitalWrite(CURRR, HIGH);
   }
 
-  if (onePress || twoPress) {
-    Serial.println("button pressed!");
-    OD_warningNum=1;
+  if (*AMS == 1) { //AMS fault light needs to be on
+    digitalWrite(AMSFLT, HIGH);
+  } else {
+    digitalWrite(AMSFLT, LOW);
+  }
+
+  if (onePress) {
+    Serial.println("button 1 pressed!");
     onePress = false;
+  }
+
+  if (twoPress) {
+    Serial.println("button 2 pressed!");
     twoPress = false;
   }
-  
+
+
   Serial.println(*warningNum);
   //if an error received on the monitor, display it
-  if (*warningNum == 0){
+  if (*warningNum == 0) {
     warning = false;
   }
   if (*warningNum != 0 && !warning) {
     handleWarning();
-  } else if(*warningNum == 0){
+  } else if (*warningNum == 0) {
     showPartialUpdate(); //if no warning, just update speed
   }
 }
 
-//partially update the screen to show the speed (and eventually SOC)
+//partially update the screen to show the speed and SOC
 void Dashboard::showPartialUpdate()
 {
-//  OD_speed = random(16, 25);
+  //  OD_speed = random(16, 25);
   //set the speed and SOC strings
   String speedString = String(*speed);
   String socString = String(*SOC);

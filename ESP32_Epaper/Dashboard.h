@@ -6,6 +6,7 @@
 
 #define TEMPR 2
 #define TEMPG 17
+#define AMSFLT 18
 #define CURRR 25
 #define CURRG 26
 #define TEMPTHRESHY 67
